@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Fantrax F1 Perfect Pick
+Fantrax F1 Perfect Pick V1.0
 
 Imports results from a race weekend
 Enumerates all viable driver lineups (within budget cap)
