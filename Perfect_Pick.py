@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Fantrax F1 Perfect Pick V1.0
+Fantrax F1 Perfect Pick V1.1
 
 Imports results from a race weekend
 Enumerates all viable driver lineups (within budget cap)
@@ -53,11 +53,15 @@ data = tli_df.join(stripped_data.set_index("Player")).reset_index(
 # determine number of drivers to enumerate through
 driver_total = len(data)
 
-# create starting counters for best result to be stored in
+# create starting counters for best and worst result to be stored in
 best_lineup = pd.DataFrame(
     columns=["Lineup", "Total Sal", "Individual Pts", "Total Pts"]
 )
 best_score = 0
+worst_lineup = pd.DataFrame(
+    columns=["Lineup", "Total Sal", "Individual Pts", "Total Pts"]
+)
+worst_score = 0
 
 
 # generate all viable driver lineup combinations
@@ -112,7 +116,9 @@ for d_1 in range((driver_total - 5)):
                             )
 
                             # store if matches or beats current best total
-                            if total_pts >= best_score:
+                            if (total_pts >= best_score) or (
+                                total_pts <= worst_score
+                            ):
 
                                 # list lineup
                                 lineup = str(
@@ -170,5 +176,31 @@ for d_1 in range((driver_total - 5)):
                                         ignore_index=True,
                                     )
                                     best_score = total_pts
+
+                                # if matches worst score, append result
+                                if total_pts == worst_score:
+                                    worst_lineup = pd.concat(
+                                        [worst_lineup, result_df],
+                                        ignore_index=True,
+                                    )
+
+                                # if new worst score, reset table and record
+                                if total_pts < worst_score:
+                                    worst_lineup = pd.DataFrame(
+                                        columns=[
+                                            "Lineup",
+                                            "Total Sal",
+                                            "Individual Pts",
+                                            "Total Pts",
+                                        ]
+                                    )
+                                    worst_lineup = pd.concat(
+                                        [worst_lineup, result_df],
+                                        ignore_index=True,
+                                    )
+                                    worst_score = total_pts
+print("Best lineup:")
 print(best_lineup)
+print("Worst lineup:")
+print(worst_lineup)
 # total combinations assessed: 63661
