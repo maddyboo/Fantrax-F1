@@ -4,3 +4,4 @@
 ## Changelog
 V1.0 - Initial version, using Bahrain data (salaries incorrect as didn't capture before post-race update)
 V1.1 - Added determination of the worst driver lineup too
+
