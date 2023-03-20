@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Fantrax F1 Perfect Pick V1.1
+Fantrax F1 Perfect Pick V1.2
 
 Imports results from a race weekend
 Enumerates all viable driver lineups (within budget cap)
@@ -10,12 +10,13 @@ scored that race weekend
 import pandas as pd
 
 # race result csv filename, stored in data subfolder against each race number
-race_no = "1"
-full_filename = "Data\\" + race_no + ".csv"
+race_no = "2"
+salary_filename = "Data\\" + race_no + "_sal.csv"
+result_filename = "Data\\" + race_no + ".csv"
 
-# import full csv, strip excess columns, then add Three Letter Indicators
-imported_data = pd.read_csv(full_filename)
-stripped_data = imported_data[["Player", "Salary", "FPts"]]
+# import result csv, strip excess columns, then add Three Letter Indicators
+raw_result_data = pd.read_csv(result_filename)
+stripped_results = raw_result_data[["Player", "FPts"]]
 
 tli_dict = {
     "Max Verstappen": "VER",
@@ -46,9 +47,14 @@ tli_dict = {
 
 tli_df = pd.DataFrame.from_dict(tli_dict, orient="index", columns=["TLI"])
 
-data = tli_df.join(stripped_data.set_index("Player")).reset_index(
+result_data = tli_df.join(stripped_results.set_index("Player")).reset_index(
     names="Player"
 )
+
+# import salary csv, strip excess columns, merge with results using driver name
+raw_salary_data = pd.read_csv(salary_filename)
+stripped_salary = raw_salary_data[["Player", "Salary"]]
+data = result_data.merge(stripped_salary, on="Player")
 
 # determine number of drivers to enumerate through
 driver_total = len(data)
@@ -115,7 +121,8 @@ for d_1 in range((driver_total - 5)):
                                 + d_6_pts
                             )
 
-                            # store if matches or beats current best total
+                            # store if matches or beats
+                            # current best or worst total
                             if (total_pts >= best_score) or (
                                 total_pts <= worst_score
                             ):

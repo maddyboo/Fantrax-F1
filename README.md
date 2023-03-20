@@ -5,3 +5,5 @@
 V1.0 - Initial version, using Bahrain data (salaries incorrect as didn't capture before post-race update)
 
 V1.1 - Added determination of the worst driver lineup too
+
+V1.2 - Additional salary .csv import, two files per race - one generated before the event (salary) and one after (result)
