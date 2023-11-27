@@ -10,7 +10,7 @@ scored that race weekend
 import pandas as pd
 
 # race result csv filename, stored in data subfolder against each race number
-race_no = "3"
+race_no = "23"
 salary_filename = "Data\\" + race_no + "_sal.csv"
 result_filename = "Data\\" + race_no + ".csv"
 
