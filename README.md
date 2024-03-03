@@ -9,3 +9,6 @@ V1.1 - Added determination of the worst driver lineup too
 V1.2 - Additional salary .csv import, two files per race - one generated before the event (salary) and one after (result)
 
 V1.3 - Uploaded all data at end of season
+
+V1.4 - 2024 season launch update - updated three letter indicator (TLI) dictionary, year folders for data
+

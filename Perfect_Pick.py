@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Fantrax F1 Perfect Pick V1.2
+Fantrax F1 Perfect Pick V1.4
 
 Imports results from a race weekend
 Enumerates all viable driver lineups (within budget cap)
@@ -10,9 +10,9 @@ scored that race weekend
 import pandas as pd
 
 # race result csv filename, stored in data subfolder against each race number
-race_no = "23"
-salary_filename = "Data\\" + race_no + "_sal.csv"
-result_filename = "Data\\" + race_no + ".csv"
+race_no = "1"
+salary_filename = "Data\\2024\\" + race_no + "_sal.csv"
+result_filename = "Data\\2024\\" + race_no + ".csv"
 
 # import result csv, strip excess columns, then add Three Letter Indicators
 raw_result_data = pd.read_csv(result_filename)
@@ -29,12 +29,10 @@ tli_dict = {
     "Alexander Albon": "ALB",
     "Lance Stroll": "STR",
     "Kevin Magnussen": "MAG",
-    "Nyck de Vries": "DEV",
     "Yuki Tsunoda": "TSU",
     "Logan Sargeant": "SAR",
     "George Russell": "RUS",
     "Daniel Ricciardo": "RIC",
-    "Nicholas Latifi": "LAT",
     "Mick Schumacher": "MSC",
     "Felipe Drugovich": "DRU",
     "Zhou Guanyu": "ZHO",
@@ -43,6 +41,10 @@ tli_dict = {
     "Oscar Piastri": "PIA",
     "Charles Leclerc": "LEC",
     "Esteban Ocon": "OCO",
+    "Ryo Hirakawa": "RYO",
+    "Liam Lawson": "LAW",
+    "Pato O'Ward": "POW",
+    "Theo Pourchaire": "TPO",
 }
 
 tli_df = pd.DataFrame.from_dict(tli_dict, orient="index", columns=["TLI"])
@@ -210,4 +212,3 @@ print("Best lineup:")
 print(best_lineup)
 print("Worst lineup:")
 print(worst_lineup)
-# total combinations assessed: 63661
