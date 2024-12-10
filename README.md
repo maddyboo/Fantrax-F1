@@ -12,3 +12,5 @@ V1.3 - Uploaded all data at end of season
 
 V1.4 - 2024 season launch update - updated three letter indicator (TLI) dictionary, year folders for data
 
+V1.5 - 2024 season data upload
+

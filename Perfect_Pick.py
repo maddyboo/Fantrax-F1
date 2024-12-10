@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Fantrax F1 Perfect Pick V1.4
+Fantrax F1 Perfect Pick V1.5
 
 Imports results from a race weekend
 Enumerates all viable driver lineups (within budget cap)
-Determines the perfect driver lineup(s), and maximum points that could be 
+Determines the perfect driver lineup(s), and maximum points that could be
 scored that race weekend
 """
 import pandas as pd
 
 # race result csv filename, stored in data subfolder against each race number
-race_no = "1"
+race_no = "24"
 salary_filename = "Data\\2024\\" + race_no + "_sal.csv"
 result_filename = "Data\\2024\\" + race_no + ".csv"
 
@@ -112,7 +112,6 @@ for d_1 in range((driver_total - 5)):
 
                         # if meets salary limit, calculate points
                         if total_sal <= 100:
-
                             # calculate total points
                             total_pts = (
                                 d_1_pts
@@ -128,7 +127,6 @@ for d_1 in range((driver_total - 5)):
                             if (total_pts >= best_score) or (
                                 total_pts <= worst_score
                             ):
-
                                 # list lineup
                                 lineup = str(
                                     [
